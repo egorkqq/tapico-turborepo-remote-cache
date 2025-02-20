@@ -18,8 +18,10 @@ services:
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-miniosecretkey}
       - AWS_S3_REGION_NAME=eu-west-1
     networks:
-      - internal
-      - public
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.constraint-label-stack=turbo-rc
 
   minio:
     image: minio/minio
@@ -31,10 +33,12 @@ services:
       - MINIO_ROOT_PASSWORD=${AWS_SECRET_ACCESS_KEY:-miniosecretkey}
     command: server /data --console-address ":9001"
     networks:
-      - internal
-      - public
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.constraint-label-stack=turbo-rc
     volumes:
-      - ./data/minio:/data
+      - ../files/minio:/data
 
   # Create the bucket needed by the service
   createbuckets:
