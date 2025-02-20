@@ -15,7 +15,7 @@ COPY . .
 
 RUN go build -buildvcs=false
 
-RUN go install
+RUN go install -buildvcs=false
 
 ENV PORT=8080
 EXPOSE 8080
