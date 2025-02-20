@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   tapico_remote_cache:
     build:
