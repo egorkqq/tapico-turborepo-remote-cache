@@ -13,7 +13,7 @@ WORKDIR /build
 
 COPY . .
 
-RUN go build
+RUN go build -buildvcs=false
 
 RUN go install
 
