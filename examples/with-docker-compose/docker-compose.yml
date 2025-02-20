@@ -55,12 +55,7 @@ services:
         exit 0;
         "
       networks:
-        - internal
-        - public
+        - dokploy-network
 
-networks:
-  internal:
-  public:
-    driver: bridge
 volumes:
   minio_volume:
